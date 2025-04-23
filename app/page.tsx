@@ -25,11 +25,39 @@ const eventDetails = {
   endTime: "2025-05-23T12:00:00-04:00", // Assuming 5.5 hours ceremony
 };
 
-// Function to generate Google Calendar URL
-const getGoogleCalendarUrl = () => {
+// Function to generate calendar URLs
+const getCalendarUrls = () => {
   const encode = (str: string) => encodeURIComponent(str);
   
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encode(eventDetails.title)}&dates=${eventDetails.startTime.replace(/[-:]/g, "").split(".")[0]}/${eventDetails.endTime.replace(/[-:]/g, "").split(".")[0]}&details=${encode(eventDetails.description)}&location=${encode(eventDetails.location)}`;
+  // Google Calendar URL
+  const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encode(eventDetails.title)}&dates=${eventDetails.startTime.replace(/[-:]/g, "").split(".")[0]}/${eventDetails.endTime.replace(/[-:]/g, "").split(".")[0]}&details=${encode(eventDetails.description)}&location=${encode(eventDetails.location)}`;
+  
+  // Apple Calendar URL (works on both iOS and macOS)
+  const appleUrl = `data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0D%0AVERSION:2.0%0D%0APRODID:-//Vishal & Monica Wedding//EN%0D%0ACALSCALE:GREGORIAN%0D%0ABEGIN:VEVENT%0D%0ADTSTART:${eventDetails.startTime}%0D%0ADTEND:${eventDetails.endTime}%0D%0ASUMMARY:${encode(eventDetails.title)}%0D%0ADESCRIPTION:${encode(eventDetails.description)}%0D%0ALOCATION:${encode(eventDetails.location)}%0D%0AEND:VEVENT%0D%0AEND:VCALENDAR`;
+
+  return {
+    google: googleUrl,
+    apple: appleUrl
+  };
+};
+
+// Function to handle calendar button click
+const handleCalendarClick = (type: 'google' | 'apple') => {
+  const urls = getCalendarUrls();
+  const url = type === 'google' ? urls.google : urls.apple;
+  
+  if (type === 'google') {
+    // For Google Calendar, open in new tab
+    window.open(url, '_blank');
+  } else {
+    // For Apple Calendar, create a temporary link and click it
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'wedding-invite.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 };
 
 export default function Home() {
@@ -134,8 +162,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2940')] bg-cover bg-center">
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
-        @import url('https://fonts.cdnfonts.com/css/yellow-rabbit');
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
         
         .bg-gradient-gold {
           background: linear-gradient(135deg, #b76e79, #d7bdb3, #d4af37);
@@ -266,40 +293,43 @@ export default function Home() {
           }
         }
 
-        .font-yellow-rabbit {
-          font-family: 'Yellow Rabbit', cursive;
+        .font-bodoni {
+          font-family: 'Bodoni Moda', serif;
         }
 
-        .font-yellow-rabbit-large {
-          font-family: 'Yellow Rabbit', cursive;
+        .font-bodoni-large {
+          font-family: 'Bodoni Moda', serif;
           font-size: 2.5rem;
           letter-spacing: 1.5px;
+          font-weight: 500;
         }
 
-        .font-yellow-rabbit-medium {
-          font-family: 'Yellow Rabbit', cursive;
+        .font-bodoni-medium {
+          font-family: 'Bodoni Moda', serif;
           font-size: 1.25rem;
           letter-spacing: 0.75px;
+          font-weight: 400;
         }
 
-        .font-yellow-rabbit-small {
-          font-family: 'Yellow Rabbit', cursive;
+        .font-bodoni-small {
+          font-family: 'Bodoni Moda', serif;
           font-size: 1rem;
           letter-spacing: 0.5px;
+          font-weight: 400;
         }
 
         @media (min-width: 768px) {
-          .font-yellow-rabbit-large {
+          .font-bodoni-large {
             font-size: 3.5rem;
             letter-spacing: 2px;
           }
 
-          .font-yellow-rabbit-medium {
+          .font-bodoni-medium {
             font-size: 1.5rem;
             letter-spacing: 1px;
           }
 
-          .font-yellow-rabbit-small {
+          .font-bodoni-small {
             font-size: 1.1rem;
             letter-spacing: 0.5px;
           }
@@ -344,36 +374,36 @@ export default function Home() {
             <div className="shine-effect"></div>
             <div className="relative z-10">
               <Heart className="w-8 h-8 sm:w-12 sm:h-12 text-rose-400 mx-auto mb-4 sm:mb-6" />
-              <h1 className="font-yellow-rabbit-large mb-2 sm:mb-3 text-gradient">Vishal & Monica</h1>
-              <p className="font-yellow-rabbit-medium text-muted-foreground mb-6 sm:mb-8">Joyfully invite you to their wedding ceremony</p>
+              <h1 className="font-bodoni-large mb-2 sm:mb-3 text-gradient">Vishal & Monica</h1>
+              <p className="font-bodoni-medium text-muted-foreground mb-6 sm:mb-8">Joyfully invite you to their wedding ceremony</p>
               
               <div className="w-16 sm:w-24 h-px bg-gradient-gold mx-auto mb-6 sm:mb-8"></div>
-              
+            
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-3xl mx-auto">
                 <div className="space-y-2">
                   <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-rose-400" />
-                  <h3 className="font-yellow-rabbit-small text-rose-400 uppercase tracking-wide">Date</h3>
-                  <p className="font-yellow-rabbit-small text-muted-foreground">Friday</p>
-                  <p className="font-yellow-rabbit-small text-muted-foreground">May 23rd, 2025</p>
+                  <h3 className="font-bodoni-small text-rose-400 uppercase tracking-wide">Date</h3>
+                  <p className="font-bodoni-small text-muted-foreground">Friday</p>
+                  <p className="font-bodoni-small text-muted-foreground">May 23rd, 2025</p>
                 </div>
                 
               <div className="space-y-2">
                   <Clock className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-rose-400" />
-                  <h3 className="font-yellow-rabbit-small text-rose-400 uppercase tracking-wide">Time</h3>
-                  <p className="font-yellow-rabbit-small text-muted-foreground">6:30 AM EST</p>
+                  <h3 className="font-bodoni-small text-rose-400 uppercase tracking-wide">Time</h3>
+                  <p className="font-bodoni-small text-muted-foreground">6:30 AM EST</p>
               </div>
               
               <div className="space-y-2">
                   <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-rose-400" />
-                  <h3 className="font-yellow-rabbit-small text-rose-400 uppercase tracking-wide">Venue</h3>
-                  <p className="font-yellow-rabbit-small text-muted-foreground">4143 Ayodhya Way</p>
-                  <p className="font-yellow-rabbit-small text-muted-foreground">Ijamsville, MD 21754</p>
+                  <h3 className="font-bodoni-small text-rose-400 uppercase tracking-wide">Venue</h3>
+                  <p className="font-bodoni-small text-muted-foreground">4143 Ayodhya Way</p>
+                  <p className="font-bodoni-small text-muted-foreground">Ijamsville, MD 21754</p>
                 </div>
               </div>
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-rose-200">
                 <Luggage className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-rose-400 mb-2" />
-                <p className="font-yellow-rabbit-small text-muted-foreground">Dress Code: Traditional / Formal Attire</p>
+                <p className="font-bodoni-small text-muted-foreground">Dress Code: Traditional / Formal Attire</p>
               </div>
             </div>
           </Card>
@@ -385,25 +415,34 @@ export default function Home() {
             <div className="floral-pattern" style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZD0iTTIwLDIwQzQwLDQwLDYwLDQwLDgwLDIwQzYwLDQwLDYwLDYwLDgwLDgwQzYwLDYwLDQwLDYwLDIwLDgwQzQwLDYwLDQwLDQwLDIwLDIwWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjc2ZTc5IiBzdHJva2Utd2lkdGg9IjEuNSIvPjxwYXRoIGQ9Ik01MCw1MEMzNSw2NSwyMCw1MCwyMCwzNUM1MCwzNSw1MCw1LDM1LDIwQzM1LDUwLDY1LDUwLDUwLDgwQzUwLDY1LDM1LDUwLDUwLDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiNkNGFmMzciIHN0cm9rZS13aWR0aD0iMC43NSIvPjwvc3ZnPg==')" }}></div>
             <div className="shine-effect"></div>
             <div className="relative z-10">
-              <h2 className="font-yellow-rabbit-large text-center mb-4 sm:mb-6 text-gradient">RSVP</h2>
+              <h2 className="font-bodoni-large text-center mb-4 sm:mb-6 text-gradient">RSVP</h2>
               <div className="w-16 sm:w-24 h-px bg-gradient-gold mx-auto mb-6 sm:mb-8"></div>
               
             {submitted ? (
               <div className="text-center space-y-4">
                   <div className="text-5xl text-rose-400 mb-4">✓</div>
-                  <h3 className="text-2xl font-serif-elegant">Thank You!</h3>
-                  <p className="text-muted-foreground font-serif-elegant mb-6">We have received your RSVP and look forward to celebrating with you.</p>
+                  <h3 className="text-2xl font-bodoni">Thank You!</h3>
+                  <p className="text-muted-foreground font-bodoni mb-6">We have received your RSVP and look forward to celebrating with you.</p>
                   
                   {formData.attendance === 'yes' && (
                     <div className="space-y-4">
-                      <p className="text-muted-foreground font-serif-elegant">Add this event to your calendar:</p>
-                      <Button 
-                        onClick={() => window.open(getGoogleCalendarUrl(), '_blank')}
-                        className="text-lg py-6 font-serif-elegant bg-gradient-gold hover:opacity-90 flex items-center justify-center gap-2 mx-auto"
-                      >
-                        <CalendarPlus className="w-5 h-5" />
-                        Add to Google Calendar
-                      </Button>
+                      <p className="text-muted-foreground font-bodoni">Add this event to your calendar:</p>
+                      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                        <Button 
+                          onClick={() => handleCalendarClick('google')}
+                          className="text-lg py-6 font-bodoni bg-gradient-gold hover:opacity-90 flex items-center justify-center gap-2"
+                        >
+                          <CalendarPlus className="w-5 h-5" />
+                          Google Calendar
+                        </Button>
+                        <Button 
+                          onClick={() => handleCalendarClick('apple')}
+                          className="text-lg py-6 font-bodoni bg-gradient-gold hover:opacity-90 flex items-center justify-center gap-2"
+                        >
+                          <CalendarPlus className="w-5 h-5" />
+                          Apple Calendar
+                        </Button>
+                      </div>
                     </div>
                   )}
               </div>
@@ -415,7 +454,7 @@ export default function Home() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                      className="border-rose-200 focus:border-rose-300 font-serif-elegant"
+                      className="border-rose-200 focus:border-rose-300 font-bodoni"
                   />
                 </div>
 
@@ -429,13 +468,13 @@ export default function Home() {
                         ...(value === 'no' ? { guests: '' } : {})
                       });
                     }}
-                  >
-                    <SelectTrigger className="border-rose-200 focus:border-rose-300 font-serif-elegant">
+                >
+                    <SelectTrigger className="border-rose-200 focus:border-rose-300 font-bodoni">
                     <SelectValue placeholder="Will you attend?" />
                   </SelectTrigger>
                   <SelectContent>
-                      <SelectItem value="yes" className="font-serif-elegant">Joyfully Accept</SelectItem>
-                      <SelectItem value="no" className="font-serif-elegant">Regretfully Decline</SelectItem>
+                      <SelectItem value="yes" className="font-bodoni">Joyfully Accept</SelectItem>
+                      <SelectItem value="no" className="font-bodoni">Regretfully Decline</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -448,7 +487,7 @@ export default function Home() {
                   value={formData.guests}
                   onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
                       required={formData.attendance === 'yes'}
-                      className="border-rose-200 focus:border-rose-300 font-serif-elegant"
+                      className="border-rose-200 focus:border-rose-300 font-bodoni"
                 />
                   </div>
 
@@ -456,13 +495,13 @@ export default function Home() {
                   placeholder="Any special notes?"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="resize-none border-rose-200 focus:border-rose-300 font-serif-elegant"
+                    className="resize-none border-rose-200 focus:border-rose-300 font-bodoni"
                   rows={4}
                 />
 
                   <Button 
                     type="submit" 
-                    className="w-full text-lg py-6 font-serif-elegant bg-gradient-gold hover:opacity-90"
+                    className="w-full text-lg py-6 font-bodoni bg-gradient-gold hover:opacity-90"
                   >
                   Send RSVP
                 </Button>
