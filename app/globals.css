@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,19 +26,19 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 340 82% 52%; /* Pink shade */
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
+    --secondary: 36 100% 50%; /* Gold shade */
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
+    --accent: 343 81% 75%; /* Light pink */
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 340 82% 90%; /* Light pink border */
+    --input: 340 82% 90%;
+    --ring: 340 82% 52%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -79,4 +81,81 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.font-dancing-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Indian decorative border */
+.indian-border {
+  position: relative;
+}
+
+.indian-border::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid hsl(var(--primary));
+  border-radius: var(--radius);
+  background: 
+    radial-gradient(circle at 0 0, transparent 12px, hsl(var(--primary)) 13px, transparent 14px),
+    radial-gradient(circle at 100% 0, transparent 12px, hsl(var(--primary)) 13px, transparent 14px),
+    radial-gradient(circle at 100% 100%, transparent 12px, hsl(var(--primary)) 13px, transparent 14px),
+    radial-gradient(circle at 0 100%, transparent 12px, hsl(var(--primary)) 13px, transparent 14px);
+  background-size: 40px 40px;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Mandala pattern background */
+.mandala-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' fill='none'%3E%3Cg opacity='0.1'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23D4364C' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23D4AF37' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23800020' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Custom form styles */
+.custom-input {
+  @apply border-2 border-pink-200 focus:border-pink-500 rounded-lg px-4 py-3 w-full;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Card decorative corners */
+.decorative-corners {
+  position: relative;
+}
+
+.decorative-corners::before,
+.decorative-corners::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid hsl(var(--primary));
+  opacity: 0.5;
+}
+
+.decorative-corners::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: var(--radius);
+}
+
+.decorative-corners::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: var(--radius);
 }
