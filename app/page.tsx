@@ -44,20 +44,7 @@ const getCalendarUrls = () => {
 // Function to handle calendar button click
 const handleCalendarClick = (type: 'google' | 'apple') => {
   const urls = getCalendarUrls();
-  const url = type === 'google' ? urls.google : urls.apple;
-  
-  if (type === 'google') {
-    // For Google Calendar, open in new tab
-    window.open(url, '_blank');
-  } else {
-    // For Apple Calendar, create a temporary link and click it
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'wedding-invite.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  window.open(urls.google, '_blank');
 };
 
 export default function Home() {
@@ -299,21 +286,21 @@ export default function Home() {
 
         .font-bodoni-large {
           font-family: 'Bodoni Moda', serif;
-          font-size: 2.5rem;
+          font-size: 2rem;
           letter-spacing: 1.5px;
           font-weight: 500;
         }
 
         .font-bodoni-medium {
           font-family: 'Bodoni Moda', serif;
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           letter-spacing: 0.75px;
           font-weight: 400;
         }
 
         .font-bodoni-small {
           font-family: 'Bodoni Moda', serif;
-          font-size: 1rem;
+          font-size: 0.9rem;
           letter-spacing: 0.5px;
           font-weight: 400;
         }
@@ -347,6 +334,22 @@ export default function Home() {
           max-height: 0;
           margin: 0;
           padding: 0;
+        }
+
+        .calendar-button {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
+          margin-top: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+          .calendar-button {
+            width: auto;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+          }
         }
       `}</style>
 
@@ -427,20 +430,13 @@ export default function Home() {
                   {formData.attendance === 'yes' && (
                     <div className="space-y-4">
                       <p className="text-muted-foreground font-bodoni">Add this event to your calendar:</p>
-                      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                      <div className="flex justify-center">
                         <Button 
                           onClick={() => handleCalendarClick('google')}
-                          className="text-lg py-6 font-bodoni bg-gradient-gold hover:opacity-90 flex items-center justify-center gap-2"
+                          className="calendar-button font-bodoni bg-gradient-gold hover:opacity-90 flex items-center justify-center gap-2"
                         >
                           <CalendarPlus className="w-5 h-5" />
-                          Google Calendar
-                        </Button>
-                        <Button 
-                          onClick={() => handleCalendarClick('apple')}
-                          className="text-lg py-6 font-bodoni bg-gradient-gold hover:opacity-90 flex items-center justify-center gap-2"
-                        >
-                          <CalendarPlus className="w-5 h-5" />
-                          Apple Calendar
+                          Add to Google Calendar
                         </Button>
                       </div>
                     </div>
