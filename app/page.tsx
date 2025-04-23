@@ -19,7 +19,7 @@ interface FormData {
 // Calendar event details
 const eventDetails = {
   title: "Vishal & Monica's Wedding Ceremony",
-  description: "Join us for our special day. Dress Code: Traditional Attire",
+  description: "Join us for our special day. Dress Code: Traditional / Formal Attire",
   location: "4143 Ayodhya Way, Ijamsville, MD 21754",
   startTime: "2025-05-23T06:30:00-04:00", // EST timezone
   endTime: "2025-05-23T12:00:00-04:00", // Assuming 5.5 hours ceremony
@@ -373,7 +373,7 @@ export default function Home() {
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-rose-200">
                 <Luggage className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-rose-400 mb-2" />
-                <p className="font-yellow-rabbit-small text-muted-foreground">Dress Code: Traditional Attire</p>
+                <p className="font-yellow-rabbit-small text-muted-foreground">Dress Code: Traditional / Formal Attire</p>
               </div>
             </div>
           </Card>
