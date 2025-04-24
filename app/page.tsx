@@ -14,6 +14,7 @@ interface FormData {
   attendance: string;
   guests: string;
   notes: string;
+  phone: string;
 }
 
 // Calendar event details
@@ -52,7 +53,8 @@ export default function Home() {
     name: '',
     attendance: '',
     guests: '',
-    notes: ''
+    notes: '',
+    phone: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
@@ -61,13 +63,14 @@ export default function Home() {
     e.preventDefault();
     
     try {
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbyEMgws7zU9jBXFW_gRCCKP8m7QMVCZfFY-De4V4uxX1kR12RV2xc4-7exEGVnjS2cA/exec';
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbw02DVdnMgbC5mh3GgnaJ_yPPaopS5hm5s8jdmg7_4_qUJPw6XAcozx0ewmK6YCLIaT/exec';
       
       const formDataToSend = {
         name: formData.name,
         attendance: formData.attendance,
         guests: formData.guests,
-        notes: formData.notes
+        notes: formData.notes,
+        phone: formData.phone
       };
       
       await fetch(scriptURL, {
@@ -450,48 +453,63 @@ export default function Home() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                      className="border-rose-200 focus:border-rose-300 font-bodoni"
+                    className="border-rose-200 focus:border-rose-300 font-bodoni"
                   />
                 </div>
 
                 <Select
                   value={formData.attendance}
-                    onValueChange={(value) => {
-                      setFormData({ 
-                        ...formData, 
-                        attendance: value,
-                        // Reset guests count when declining
-                        ...(value === 'no' ? { guests: '' } : {})
-                      });
-                    }}
+                  onValueChange={(value) => {
+                    setFormData({ 
+                      ...formData, 
+                      attendance: value,
+                      // Reset guests count when declining
+                      ...(value === 'no' ? { guests: '', phone: '' } : {})
+                    });
+                  }}
+                  required
                 >
-                    <SelectTrigger className="border-rose-200 focus:border-rose-300 font-bodoni">
+                  <SelectTrigger className="border-rose-200 focus:border-rose-300 font-bodoni">
                     <SelectValue placeholder="Will you attend?" />
                   </SelectTrigger>
                   <SelectContent>
-                      <SelectItem value="yes" className="font-bodoni">Joyfully Accept</SelectItem>
-                      <SelectItem value="no" className="font-bodoni">Regretfully Decline</SelectItem>
+                    <SelectItem value="yes" className="font-bodoni">Joyfully Accept</SelectItem>
+                    <SelectItem value="no" className="font-bodoni">Regretfully Decline</SelectItem>
                   </SelectContent>
                 </Select>
 
-                  <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
-                <Input
-                  type="number"
-                  placeholder="How many guests are attending? (including yourself)"
-                  min="1"
-                  max="5"
-                  value={formData.guests}
-                  onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                      required={formData.attendance === 'yes'}
-                      className="border-rose-200 focus:border-rose-300 font-bodoni"
-                />
-                  </div>
+                <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
+                  <Input
+                    type="number"
+                    placeholder="How many guests are attending? (including yourself)"
+                    min="1"
+                    max="5"
+                    value={formData.guests}
+                    onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
+                    required={formData.attendance === 'yes'}
+                    className="border-rose-200 focus:border-rose-300 font-bodoni"
+                  />
+                </div>
+
+                <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      setFormData({ ...formData, phone: value });
+                    }}
+                    required={formData.attendance === 'yes'}
+                    className="border-rose-200 focus:border-rose-300 font-bodoni"
+                  />
+                </div>
 
                 <Textarea
                   placeholder="Any special notes?"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    className="resize-none border-rose-200 focus:border-rose-300 font-bodoni"
+                  className="resize-none border-rose-200 focus:border-rose-300 font-bodoni"
                   rows={4}
                 />
 
