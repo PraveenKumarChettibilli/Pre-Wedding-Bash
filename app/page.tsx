@@ -428,10 +428,11 @@ export default function Home() {
               <div className="text-center space-y-4">
                   <div className="text-5xl text-rose-400 mb-4">✓</div>
                   <h3 className="text-2xl font-bodoni">Thank You!</h3>
-                  <p className="text-muted-foreground font-bodoni mb-6">We have received your RSVP and look forward to celebrating with you.</p>
+                  <p className="text-muted-foreground font-bodoni mb-6">We have received your RSVP.</p>
                   
                   {formData.attendance === 'yes' && (
                     <div className="space-y-4">
+                      <p className="text-muted-foreground font-bodoni mb-6">Looking forward to celebrating with you.</p>
                       <p className="text-muted-foreground font-bodoni">Add this event to your calendar:</p>
                       <div className="flex justify-center">
                         <Button 
