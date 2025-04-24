@@ -58,9 +58,17 @@ export default function Home() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Prevent duplicate submissions
+    if (isSubmitting || submitted) {
+      return;
+    }
+    
+    setIsSubmitting(true);
     
     try {
       const scriptURL = 'https://script.google.com/macros/s/AKfycbw02DVdnMgbC5mh3GgnaJ_yPPaopS5hm5s8jdmg7_4_qUJPw6XAcozx0ewmK6YCLIaT/exec';
@@ -88,6 +96,8 @@ export default function Home() {
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('There was an error submitting your RSVP. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -482,7 +492,7 @@ export default function Home() {
                 <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
                   <Input
                     type="number"
-                    placeholder="How many guests are attending? (including yourself)"
+                    placeholder="How many guests are attending? (including you)"
                     min="1"
                     max="20"
                     value={formData.guests}
@@ -517,9 +527,10 @@ export default function Home() {
                   <Button 
                     type="submit" 
                     className="w-full text-lg py-6 font-bodoni bg-gradient-gold hover:opacity-90"
+                    disabled={isSubmitting}
                   >
-                  Send RSVP
-                </Button>
+                    {isSubmitting ? 'Sending...' : 'Send RSVP'}
+                  </Button>
               </form>
             )}
             </div>
