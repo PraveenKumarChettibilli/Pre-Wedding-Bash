@@ -432,7 +432,7 @@ export default function Home() {
                   
                   {formData.attendance === 'yes' && (
                     <div className="space-y-4">
-                      <p className="text-muted-foreground font-bodoni mb-6">Looking forward to celebrating with you.</p>
+                      <p className="text-muted-foreground font-bodoni mb-6">We look forward to celebrating with you.</p>
                       <p className="text-muted-foreground font-bodoni">Add this event to your calendar:</p>
                       <div className="flex justify-center">
                         <Button 
