@@ -484,7 +484,7 @@ export default function Home() {
                     type="number"
                     placeholder="How many guests are attending? (including yourself)"
                     min="1"
-                    max="5"
+                    max="20"
                     value={formData.guests}
                     onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
                     required={formData.attendance === 'yes'}
