@@ -138,17 +138,38 @@ export default function Home() {
 
   const handleDrinkChange = (drink: string) => {
     setFormData(prev => {
-      if (prev.drinks.includes(drink)) {
-        return {
-          ...prev,
-          drinks: prev.drinks.filter(d => d !== drink)
-        };
-      } else {
-        return {
-          ...prev,
-          drinks: [...prev.drinks, drink]
-        };
+      // If "No Drink" is selected, deselect all other options
+      if (drink === 'No Drink') {
+        if (prev.drinks.includes('No Drink')) {
+          // If "No Drink" is being unchecked, just remove it
+          return {
+            ...prev,
+            drinks: prev.drinks.filter(d => d !== 'No Drink')
+          };
+        } else {
+          // If "No Drink" is being checked, remove all other selections
+          return {
+            ...prev,
+            drinks: ['No Drink']
+          };
+        }
       }
+
+      // If any other drink is selected, remove "No Drink" from the selection
+      let newDrinks = prev.drinks.filter(d => d !== 'No Drink');
+      
+      if (prev.drinks.includes(drink)) {
+        // Remove the drink if it's already selected
+        newDrinks = newDrinks.filter(d => d !== drink);
+      } else {
+        // Add the drink if it's not selected
+        newDrinks.push(drink);
+      }
+
+      return {
+        ...prev,
+        drinks: newDrinks
+      };
     });
   };
 
@@ -529,7 +550,7 @@ export default function Home() {
             <div className="relative z-10">
               <Heart className="w-8 h-8 sm:w-12 sm:h-12 text-[#ffd700] mx-auto mb-4 sm:mb-6" />
               <h1 className="font-bodoni-large mb-2 sm:mb-3 text-gradient">Vishal & Monica</h1>
-              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Invite you to their Pre Wedding Bash</p>
+              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Invite you to their Sangeet Ceremony</p>
               
               <div className="w-16 sm:w-24 h-px bg-gradient-party mx-auto mb-6 sm:mb-8"></div>
             
@@ -557,7 +578,7 @@ export default function Home() {
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#ffd700]/30">
                 <Shirt className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-[#ffd700] mb-2" />
-                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Black/White Formals</p>
+                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Party Wear</p>
               </div>
             </div>
           </Card>
@@ -664,7 +685,7 @@ export default function Home() {
                   <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
                     <label className="block text-sm font-bodoni text-[#ffd700] mb-2">Preferred Drinks (Required)</label>
                     <div className="space-y-2">
-                      {['Soft Drinks', 'Vodka', 'Whiskey', 'Beer', 'No Drink'].map((drink) => (
+                      {['Soft Drinks', 'Sparkling Water', 'Vodka', 'Whiskey', 'Beer', 'No Drink'].map((drink) => (
                         <div key={drink} className="flex items-center space-x-2">
                           <input
                             type="checkbox"
