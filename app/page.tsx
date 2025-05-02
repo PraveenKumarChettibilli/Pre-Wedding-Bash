@@ -550,7 +550,7 @@ export default function Home() {
             <div className="relative z-10">
               <Heart className="w-8 h-8 sm:w-12 sm:h-12 text-[#ffd700] mx-auto mb-4 sm:mb-6" />
               <h1 className="font-bodoni-large mb-2 sm:mb-3 text-gradient">Vishal & Monica</h1>
-              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Invite you to their Sangeet Ceremony</p>
+              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Invite you to their Pre Wedding Bash</p>
               
               <div className="w-16 sm:w-24 h-px bg-gradient-party mx-auto mb-6 sm:mb-8"></div>
             
@@ -578,7 +578,7 @@ export default function Home() {
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#ffd700]/30">
                 <Shirt className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-[#ffd700] mb-2" />
-                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Party Wear</p>
+                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Black/White Formal</p>
               </div>
             </div>
           </Card>
@@ -592,7 +592,7 @@ export default function Home() {
             <div className="corner-decoration bottom-right" style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMTUwIDE1MCI+PHBhdGggZD0iTTAsNTAgQzAsMjAgMjAsMCA1MCwwIEM3MCwwIDgwLDMwIDEwMCw1MCBDMTIwLDcwIDE1MCw4MCAxNTAsMTAwIEMxNTAsMTUwIDEwMCwyMDAgNTAsMTUwIEMzMCwxMzAgNTAsMTAwIDMwLDgwIEMxMCw2MCAyMCwyMCAwLDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')" }}></div>
             <div className="shine-effect"></div>
             <div className="relative z-10">
-              <h2 className="font-bodoni-large text-center mb-4 sm:mb-6 text-gradient">Sangeet RSVP</h2>
+              <h2 className="font-bodoni-large text-center mb-4 sm:mb-6 text-gradient">Pre Wedding Bash RSVP</h2>
               <div className="w-16 sm:w-24 h-px bg-gradient-party mx-auto mb-6 sm:mb-8"></div>
               
               {submitted ? (
@@ -643,7 +643,7 @@ export default function Home() {
                     required
                   >
                     <SelectTrigger className="border-[#ffd700] focus:border-[#ffc107] font-bodoni">
-                      <SelectValue placeholder="Will you attend the Sangeet?" />
+                      <SelectValue placeholder="Will you attend the Party?" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="yes" className="font-bodoni">Yes</SelectItem>
