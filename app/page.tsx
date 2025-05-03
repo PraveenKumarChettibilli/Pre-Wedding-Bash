@@ -685,7 +685,7 @@ export default function Home() {
                   <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
                     <label className="block text-sm font-bodoni text-[#ffd700] mb-2">Preferred Drinks (Required)</label>
                     <div className="space-y-2">
-                      {['Soft Drinks', 'Sparkling Water', 'Vodka', 'Whiskey', 'Beer', 'No Drink'].map((drink) => (
+                      {['Soft Drinks', 'Vodka', 'Whiskey', 'Beer', 'No Drink'].map((drink) => (
                         <div key={drink} className="flex items-center space-x-2">
                           <input
                             type="checkbox"
