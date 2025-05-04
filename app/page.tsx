@@ -578,7 +578,7 @@ export default function Home() {
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#ffd700]/30">
                 <Shirt className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-[#ffd700] mb-2" />
-                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Black/White Formal</p>
+                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Floral Sheek</p>
               </div>
             </div>
           </Card>
