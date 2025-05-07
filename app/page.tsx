@@ -578,7 +578,7 @@ export default function Home() {
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#ffd700]/30">
                 <Shirt className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-[#ffd700] mb-2" />
-                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Any Floral Dress</p>
+                <p className="font-bodoni-small text-white text-[#ffd700]"><h4 className="text-[#ffd700]">Dress Code:</h4> Go Crazy on Party wear! Best dressed person wins a Gift!</p>
               </div>
             </div>
           </Card>
@@ -685,7 +685,7 @@ export default function Home() {
                   <div className={`form-field ${formData.attendance === 'no' ? 'hidden' : ''}`}>
                     <label className="block text-sm font-bodoni text-[#ffd700] mb-2">Preferred Drinks (Required)</label>
                     <div className="space-y-2">
-                      {['Soft Drinks', 'Vodka', 'Whiskey', 'Beer', 'No Drink'].map((drink) => (
+                      {['Soft Drinks', 'Cocktails', 'Mocktails', 'Vodka', 'Whiskey', 'Beer', 'No Drink'].map((drink) => (
                         <div key={drink} className="flex items-center space-x-2">
                           <input
                             type="checkbox"
@@ -703,7 +703,7 @@ export default function Home() {
                   </div>
 
                   <Textarea
-                    placeholder="Any additional notes (Song Requests, allergies, specific needs, etc.)"
+                    placeholder="Any additional notes (preferred drink brands, song requests, allergies, specific needs, etc.)"
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className="resize-none border-[#ffd700] focus:border-[#ffc107] font-bodoni"
