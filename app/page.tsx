@@ -548,9 +548,9 @@ export default function Home() {
             <div className="corner-decoration bottom-right" style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMTUwIDE1MCI+PHBhdGggZD0iTTAsNTAgQzAsMjAgMjAsMCA1MCwwIEM3MCwwIDgwLDMwIDEwMCw1MCBDMTIwLDcwIDE1MCw4MCAxNTAsMTAwIEMxNTAsMTUwIDEwMCwyMDAgNTAsMTUwIEMzMCwxMzAgNTAsMTAwIDMwLDgwIEMxMCw2MCAyMCwyMCAwLDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')" }}></div>
             <div className="shine-effect"></div>
             <div className="relative z-10">
-              <Heart className="w-8 h-8 sm:w-12 sm:h-12 text-[#ffd700] mx-auto mb-4 sm:mb-6" />
-              <h1 className="font-bodoni-large mb-2 sm:mb-3 text-gradient">Vishal & Monica</h1>
-              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Invite you to their Pre Wedding Bash</p>
+              {/* <Heart className="w-8 h-8 sm:w-12 sm:h-12 text-[#ffd700] mx-auto mb-4 sm:mb-6" /> */}
+              <h1 className="font-bodoni-large mb-2 sm:mb-3 text-gradient">Vishal & Monica's</h1>
+              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Pre Wedding Bash</p>
               
               <div className="w-16 sm:w-24 h-px bg-gradient-party mx-auto mb-6 sm:mb-8"></div>
             
@@ -578,7 +578,50 @@ export default function Home() {
               
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#ffd700]/30">
                 <Shirt className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-[#ffd700] mb-2" />
-                <p className="font-bodoni-small text-white text-[#ffd700]"><h4 className="text-[#ffd700]">Dress Code:</h4> Go Crazy on Party wear! Best dressed person wins a Gift!</p>
+                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Shine Bright! Let's illuminate the night together.</p>
+              </div>
+            </div>
+          </Card>
+
+          {/*Pelli Koduku Event Details */}
+          <Card className="p-4 sm:p-8 bg-black/10 text-center relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1628498188904-036f5e25e93e?q=80&w=2127')] bg-cover bg-center">
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="starry-night"></div>
+            <div className="shooting-star"></div>
+            <div className="corner-decoration top-left" style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMTUwIDE1MCI+PHBhdGggZD0iTTAsNTAgQzAsMjAgMjAsMCA1MCwwIEM3MCwwIDgwLDMwIDEwMCw1MCBDMTIwLDcwIDE1MCw4MCAxNTAsMTAwIEMxNTAsMTUwIDEwMCwyMDAgNTAsMTUwIEMzMCwxMzAgNTAsMTAwIDMwLDgwIEMxMCw2MCAyMCwyMCAwLDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')" }}></div>
+            <div className="corner-decoration bottom-right" style={{ backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMTUwIDE1MCI+PHBhdGggZD0iTTAsNTAgQzAsMjAgMjAsMCA1MCwwIEM3MCwwIDgwLDMwIDEwMCw1MCBDMTIwLDcwIDE1MCw4MCAxNTAsMTAwIEMxNTAsMTUwIDEwMCwyMDAgNTAsMTUwIEMzMCwxMzAgNTAsMTAwIDMwLDgwIEMxMCw2MCAyMCwyMCAwLDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')" }}></div>
+            <div className="shine-effect"></div>
+            <div className="relative z-10">
+              {/* <h1 className="font-bodoni-large mb-2 sm:mb-3 text-gradient">Pelli Koduku Event</h1> */}
+              <p className="font-bodoni-medium text-[#ffd700] mb-6 sm:mb-8">Pelli Koduku Event </p>
+              
+              <div className="w-16 sm:w-24 h-px bg-gradient-party mx-auto mb-6 sm:mb-8"></div>
+            
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-3xl mx-auto">
+                <div className="space-y-2">
+                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-[#ffd700]" />
+                  <h3 className="font-bodoni-small text-[#ffd700] uppercase tracking-wide">Date</h3>
+                  <p className="font-bodoni-small text-[#ffd700]">Thursday</p>
+                  <p className="font-bodoni-small text-[#ffd700]">May 22st, 2025</p>
+                </div>
+                
+                <div className="space-y-2">
+                  <Clock className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-[#ffd700]" />
+                  <h3 className="font-bodoni-small text-[#ffd700] uppercase tracking-wide">Time</h3>
+                  <p className="font-bodoni-small text-[#ffd700]">  9:00 AM EST</p>
+                </div>
+                
+                <div className="space-y-2">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mx-auto text-[#ffd700]" />
+                  <h3 className="font-bodoni-small text-[#ffd700] uppercase tracking-wide">Venue</h3>
+                  <p className="font-bodoni-small text-[#ffd700]">18331 Comus Rd</p>
+                  <p className="font-bodoni-small text-[#ffd700]">Dickerson, MD 20842</p>
+                </div>
+              </div>
+              
+              <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-[#ffd700]/30">
+                <Shirt className="w-6 h-7 sm:w-7 sm:h-9 mx-auto text-[#ffd700] mb-2" />
+                <p className="font-bodoni-small text-[#ffd700]">Dress Code: Hues of Yellow or Green</p>
               </div>
             </div>
           </Card>
